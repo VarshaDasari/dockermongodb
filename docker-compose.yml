@@ -1,0 +1,20 @@
+version: "2"
+services:
+   web:
+      build: .
+      ports:
+       - "1234:1234"
+   db:
+      image: mongo
+      volumes:
+        - mongodb:/data/db
+        - mongodb_config:/data/configdb
+      ports:
+        - "27017:27017"
+      command: mongod
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: admin
+        MONGO_INITDB_ROOT_PASSWORD: admin
+volumes:
+   mongodb:
+   mongodb_config:
